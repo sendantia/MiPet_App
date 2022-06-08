@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="355dp"
+    android:layout_height="100dp"
+    android:layout_marginStart="30dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="20dp"
+    android:background="@drawable/degradado_claro"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="10dp"
+        android:layout_height="match_parent"
+        android:background="@color/color1"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/tipo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp" />
+
+    <ImageView
+        android:id="@+id/eliminar_pet"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/papelera" />
+
+    <TextView
+        android:id="@+id/nombreLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="27dp"
+        android:fontFamily="@font/kanit"
+        android:text="Hola"
+        android:textColor="@color/color1"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/tipoLista"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/border"
+        android:textSize="20dp"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/btn_cuidados"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="312dp"
+        android:layout_marginTop="58dp"
+        android:src="@drawable/cuidados" />
+
+    <!-- <TextView
+         android:id="@+id/nombreLista"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="40dp"
+         android:layout_marginTop="20dp"
+         android:fontFamily="@font/alice"
+         android:text="Hola"
+         android:textSize="45dp"
+         android:textColor="@color/color1"/>
+
+
+
+ <LinearLayout
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal">
+
+     <TextView
+         android:id="@+id/tipoLista"
+         android:layout_width="100dp"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="50dp"
+         android:layout_marginTop="15dp"
+         android:background="@drawable/border"
+         android:textSize="20dp"
+         android:visibility="gone"/>
+
+     <ImageView
+         android:id="@+id/btn_cuidados"
+         android:layout_width="60dp"
+         android:layout_height="60dp"
+         android:layout_marginStart="150dp"
+         android:layout_marginTop="20dp"
+         android:src="@drawable/cuidados" />
+ </LinearLayout>-->
+
+
+</RelativeLayout>

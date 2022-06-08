@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sali_con_login"
+        android:title="Salir aplicación" />
+
+    <item
+        android:id="@+id/cerrar_sesion"
+        android:title="Cerrar sesión" />
+
+    <item
+        android:id="@+id/borrarUser"
+        android:title="Borrar usuario" />
+</menu>
