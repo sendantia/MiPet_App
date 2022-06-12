@@ -4,7 +4,7 @@ public class TipoPet {
     private String tipo;
     private int imagenTipo;
 
-    public TipoPet( int imagenTipo,String tipo) {
+    public TipoPet(int imagenTipo, String tipo) {
         this.tipo = tipo;
         this.imagenTipo = imagenTipo;
     }

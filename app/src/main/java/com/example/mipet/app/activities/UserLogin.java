@@ -35,7 +35,7 @@ public class UserLogin extends AppCompatActivity {
     private static final String AES = "AES";
     private static final String SHA = "SHA-256";
     private EditText emailField, passField;
-    private Button btnInsert, btnLogin, btnInsertNewPass, btnForgetPass,btnVolver;
+    private Button btnInsert, btnLogin, btnInsertNewPass, btnForgetPass, btnVolver;
     private ImageButton ImbtnVerPass;
     private ViewModel appView;
     private String emailUser, password, passEncrypt;
@@ -60,15 +60,15 @@ public class UserLogin extends AppCompatActivity {
 
         //si tenemos que aceptar los terminos
         //cuando vuelva queremos siga el email y contraseña
-        try{
-            bundle=getIntent().getExtras();
-            emailUser=bundle.getString("user");
-            password=bundle.getString("pass");
+        try {
+            bundle = getIntent().getExtras();
+            emailUser = bundle.getString("user");
+            password = bundle.getString("pass");
             emailField.setText(emailUser);
             passField.setText(password);
 
 
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
@@ -116,6 +116,7 @@ public class UserLogin extends AppCompatActivity {
             }
         });
 
+        //para ver la contraseña al presionar el imageButton
         ImbtnVerPass.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
 
@@ -188,7 +189,6 @@ public class UserLogin extends AppCompatActivity {
             startHomeActivity();
 
 
-
         } else {
             Toast.makeText(getApplicationContext(), "usuario o contraseña incorrecta", Toast.LENGTH_LONG).show();
         }
@@ -198,7 +198,7 @@ public class UserLogin extends AppCompatActivity {
         // posibles errores al introducir los datos
         emailField.setError(null);
         passField.setError(null);
-        // Store values at the time of the login attempt.
+
         emailUser = emailField.getText().toString();
         password = passField.getText().toString();
         user = new Usuario(emailUser, password);
@@ -262,7 +262,7 @@ public class UserLogin extends AppCompatActivity {
     private SecretKeySpec generateKey(String usuario) throws Exception {
         //GENERAR UN SHA PARA LA CLAVE (ABREVIATURA ALGORITMO DE HASH SEGURO)
         MessageDigest sha = MessageDigest.getInstance(SHA);
-        //pasamos el usaurio a bites con el estandar utf8
+        //pasamos el usuario a bites con el estandar utf8
         byte[] key = usuario.getBytes("UTF-8");
         //llamamos al metodo del sha para que nos completa el calculo de hash
         key = sha.digest(key);
@@ -288,12 +288,11 @@ public class UserLogin extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 appView.updatePass(emailUser, passEncrypt);
-                Toast.makeText(getApplicationContext(), "La contraseña ha sido mofificada", Toast.LENGTH_LONG).show();
-
+                Toast.makeText(getApplicationContext(), getString(R.string.pass_update), Toast.LENGTH_LONG).show();
 
 
             } else {
-                Toast.makeText(getApplicationContext(), "El email proporcionado no está registrado", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.email_no), Toast.LENGTH_LONG).show();
 
             }
             btnInsert.setVisibility(View.VISIBLE);
@@ -304,10 +303,11 @@ public class UserLogin extends AppCompatActivity {
 
 
     }
+
     //metodo para que salga un ventana para aceptar terminos
     public void acepTerms() {
         emailUser = emailField.getText().toString();
-        password=passField.getText().toString();
+        password = passField.getText().toString();
         isUser = appView.loginByName(emailUser);
         if (!isUser) {
             AlertDialog.Builder myBuild = new AlertDialog.Builder(this);
@@ -324,27 +324,28 @@ public class UserLogin extends AppCompatActivity {
             myBuild.setNegativeButton("No", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Toast.makeText(getApplicationContext(), "Si no acepta las condiciones, no podrá darse de alta en la aplicación", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.no_condiciones), Toast.LENGTH_LONG).show();
                 }
             });
-            myBuild.setNeutralButton("Consultar condiciones", new DialogInterface.OnClickListener() {
+            myBuild.setNeutralButton(getString(R.string.condiciones), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     Intent intent = new Intent(UserLogin.this, PoliticaPrivacidad.class);
-                    intent.putExtra("user",emailUser);
-                    intent.putExtra("pass",password);
-                    startActivityForResult(intent,NEW_ACTIVITY_REQUEST_CODE1);
+                    intent.putExtra("user", emailUser);
+                    intent.putExtra("pass", password);
+                    startActivityForResult(intent, NEW_ACTIVITY_REQUEST_CODE1);
                     finish();
                 }
             });
             AlertDialog dialog = myBuild.create();
             dialog.show();
         } else {
-            Toast.makeText(getApplicationContext(), "El email proporcionado ya está registrado", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.ya_registrado), Toast.LENGTH_LONG).show();
         }
     }
 
-    public void onClickVolver(View v){
+    //metodo para que salgan los botones si le damos a olvidar contraseña
+    public void onClickVolver(View v) {
         btnInsert.setVisibility(View.VISIBLE);
         btnLogin.setVisibility(View.VISIBLE);
         btnInsertNewPass.setVisibility(View.GONE);

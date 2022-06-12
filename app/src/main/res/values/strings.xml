@@ -76,30 +76,30 @@
     </string>
     <string name="condicion1">
         1. Estos Términos y Condiciones de Uso regulan las reglas a que se sujeta la utilización de la APP
-        ____________________ (en adelante, la APP), que puede descargarse desde el dominio
-        _______________________________ La descarga o utilización de la APP atribuye la condición de
+        Mipet (en adelante, Mipet), que puede descargarse desde el dominio
+        PlayStore La descarga o utilización de la APP atribuye la condición de
         Usuario a quien lo haga e implica la aceptación de todas las condiciones incluidas en este documento
         y en la Política de Privacidad y el Aviso Legal de dicha página Web. El Usuario debería leer estas
         condiciones cada vez que utilice la APP, ya que podrían ser modificadas en lo sucesivo.
     </string>
     <string name="condicion2">
-        2. Únicamente los Usuarios expresamente autorizados por XXXEMPRESAXXX podrán acceder a la
+        2. Únicamente los Usuarios expresamente autorizados por Mipet podrán acceder a la
         descarga y uso de la APP. Los Usuarios que no dispongan de autorización, no podrán acceder a dicho
         contenido.
 </string>
     <string name="condicion3">
         3. Cargos: eres responsable del pago de todos los costes o gastos en los que incurras como resultado de
-        descargar y usar la Aplicación de XXXEMPRESAXXX, incluido cualquier cargo de red de operador o
+        descargar la versión premium y usar la Aplicación de Mipet, incluido cualquier cargo de red de operador o
         itinerancia. Consulta con tu proveedor de servicios los detalles al respecto.
 </string>
     <string name="condicion4">
-        4. Estadísticas anónimas: XXXEMPRESAXXX se reserva el derecho a realizar un seguimiento de tu
+        4. Estadísticas anónimas: Mipet se reserva el derecho a realizar un seguimiento de tu
         actividad en la Aplicación de y a informar de ello a nuestros proveedores de servicios estadísticos de
         terceros. Todo ello de forma anónima.
 </string>
     <string name="condicion5">
         5. Protección de tu información personal: queremos ayudarte a llevar a cabo todos los pasos necesarios
-        para proteger tu privacidad e información. Consulta la Política de privacidad de XXXEMPRESAXXX y los
+        para proteger tu privacidad e información. Consulta la Política de privacidad de Mipet y los
         avisos sobre privacidad de la Aplicación para conocer qué tipo de información recopilamos y las
         medidas que tomamos para proteger tu información personal.
 </string>
@@ -108,20 +108,20 @@
         desactivar o manipular de cualquier otra forma (o tratar de eludir, desactivar o manipular) las
         funciones de seguridad u otras funciones del programa y utilizar la APP o sus contenidos para un fin
         comercial o publicitario. Queda prohibido el uso de la APP con la finalidad de lesionar bienes,
-        derechos o intereses de XXXEMPRESAXXX o de terceros. Queda igualmente prohibido realizar
+        derechos o intereses de Mipet o de terceros. Queda igualmente prohibido realizar
         cualquier otro uso que altere, dañe o inutilice las redes, servidores, equipos, productos y programas
-        informáticos de XXXEMPRESAXXX o de terceros.
+        informáticos de Mipet o de terceros.
 </string>
     <string name="condicion7">
-        7. La APP y sus contenidos (textos, fotografías, gráficos, imágenes, tecnología, software, links,
+        7. La APP y sus contenidos (textos,  gráficos, imágenes, tecnología, software,
         contenidos, diseño gráfico, código fuente, etc.), así como las marcas y demás signos distintivos son
-        propiedad de XXXEMPRESAXXX o de terceros, no adquiriendo el Usuario ningún derecho sobre ellos
+        propiedad de Mipet o de terceros, no adquiriendo el Usuario ningún derecho sobre ellos
         por el mero uso de la APP. El Usuario, deberá abstenerse de:
  </string>
     <string name="condicion7a">
         a) Reproducir, copiar, distribuir, poner a disposición de terceros, comunicar públicamente,
         transformar o modificar la APP o sus contenidos, salvo en los casos contemplados en la ley o
-        expresamente autorizados por XXXEMPRESAXXX o por el titular de dichos derechos.
+        expresamente autorizados por Mipet o por el titular de dichos derechos.
 </string>
     <string name="condicion7b">
         b) Reproducir o copiar para uso privado la APP o sus contenidos, así como comunicarlos
@@ -132,5 +132,24 @@
     </string>
     <string name="title_activity_user_login">UserLogin</string>
     <string name="acept_change">Olvidó su contraseña</string>
+    <string name="email_no">El email proporcionado no está registrado</string>
+    <string name="no_condiciones">Si no acepta las condiciones, no podrá darse de alta en la aplicación</string>
+    <string name="condiciones">Consultar condicoines</string>
+    <string name="ya_registrado">El email proporcionado ya está registrado</string>
+    <string name="pass_update">La contraseña ha sido modificada</string>
+    <string name="borrar_usuario">El usuario ha sido borrado</string>
+    <string name="cancelar_borrar">Borrado cancelado</string>
+    <string name="mascota_registrada">Mascota registrada</string>
+    <string name="falta_campos">Rellene totos los campos</string>
+    <string name="articulo_registrado">Artículo registrado</string>
+    <string name="articulo_ya_existe">Ya tiene registrado ese artículo</string>
+    <string name="cita_registrada">Cita registrada</string>
+    <string name="fecha_hora_sin_datos">Campos de fecha/ hora sin datos</string>
+    <string name="fecha_pasada">La fecha seleccionada ya ha pasado</string>
+    <string name="cita_existe">La cita ya está registrada</string>
+    <string name="cita_pasada">La cita ya ha pasado</string>
+    <string name="no_corresponde"> La hora seleccionada ya ha pasado o no se corresponde con la cita</string>
+    <string name="notificacon_si">Notificación activada</string>
+
 
 </resources>

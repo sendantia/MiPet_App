@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mipet.R;
@@ -34,7 +33,7 @@ public class RegistroArticulos extends AppCompatActivity {
     private Button btnRegistrar;
     private ViewModel appView;
     private Articulo articulo;
-    private String nombreArticulo, pvpString,unidad,medida,udMedida, fechaString;
+    private String nombreArticulo, pvpString, unidad, medida, udMedida, fechaString;
     private Float pvp;
     private ImageButton btnLimpiarCampos;
     private Calendar calendar;
@@ -50,7 +49,7 @@ public class RegistroArticulos extends AppCompatActivity {
         spUnidad = findViewById(R.id.spiner_num);
         spTiempo = findViewById(R.id.spiner_tiempo);
         btnRegistrar = findViewById(R.id.btn_reg_articulo);
-        btnLimpiarCampos=findViewById(R.id.btn_clear);
+        btnLimpiarCampos = findViewById(R.id.btn_clear);
         appView = new ViewModel(this.getApplication());
 
         //recogemos el id de las preferences
@@ -66,7 +65,7 @@ public class RegistroArticulos extends AppCompatActivity {
         ArrayAdapter<String> adapterT = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, ud);
         spTiempo.setAdapter(adapterT);
 
-        btnLimpiarCampos.setOnClickListener(new View.OnClickListener(){
+        btnLimpiarCampos.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -74,8 +73,7 @@ public class RegistroArticulos extends AppCompatActivity {
                 editPvp.setText("");
                 spUnidad.setSelection(0);
                 spTiempo.setSelection(0);
-               /* txtHasta.setVisibility(View.INVISIBLE);
-                txtFechaVen.setVisibility(View.INVISIBLE);*/
+
             }
         });
 
@@ -86,11 +84,11 @@ public class RegistroArticulos extends AppCompatActivity {
                 if (validateName()) {
                     if (validateArticulo()) {
                         appView.insertArticulo(articulo);
-                        Toast.makeText(getApplicationContext(), " Articulo registrado registrada", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.articulo_registrado), Toast.LENGTH_LONG).show();
                         startActivity();
 
                     } else {
-                        Toast.makeText(getApplicationContext(), " Rellene todos los campos", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.falta_campos), Toast.LENGTH_LONG).show();
                     }
 
                 }
@@ -103,44 +101,41 @@ public class RegistroArticulos extends AppCompatActivity {
     private Boolean validateArticulo() {
         nombreArticulo = editNameArticle.getText().toString();
         pvpString = editPvp.getText().toString();
-        unidad=spUnidad.getSelectedItem().toString();
-        medida=spTiempo.getSelectedItem().toString();
-        udMedida=unidad +" "+ medida;
+        unidad = spUnidad.getSelectedItem().toString();
+        medida = spTiempo.getSelectedItem().toString();
+        udMedida = unidad + " " + medida;
         if (pvpString.isEmpty()) {
             return false;
         } else {
             pvp = Float.parseFloat(pvpString);
         }
 
-        fechaString = calculePeriod();
+
         //calculamos la fecha de vencimiento
+        fechaString = calculePeriod();
 
         if (nombreArticulo.isEmpty() || pvpString.isEmpty() || udMedida.isEmpty() || id == 0) {
             return false;
         } else {
             articulo = new Articulo(nombreArticulo, udMedida, pvp, id, fechaString);
-            //mostramos la fecha
-            /*txtHasta.setVisibility(View.VISIBLE);
-            txtFechaVen.setVisibility(View.VISIBLE);
-            txtFechaVen.setText(fechaString);*/
             return true;
         }
 
 
     }
 
-    //calculamos el nº de días
+    //calculamos la fecha de vencimiento por las unidades del spinner
     private String calculePeriod() {
-        unidad=spUnidad.getSelectedItem().toString();
-        medida=spTiempo.getSelectedItem().toString();
+        unidad = spUnidad.getSelectedItem().toString();
+        medida = spTiempo.getSelectedItem().toString();
         periodo = Integer.parseInt(unidad);
         calendar = Calendar.getInstance();
-        switch (medida){
+        switch (medida) {
             case "dias":
                 calendar.add(Calendar.DAY_OF_YEAR, periodo);
                 break;
             case "semanas":
-                int dias=7*periodo;
+                int dias = 7 * periodo;
                 calendar.add(Calendar.DAY_OF_YEAR, dias);
                 break;
             case "meses":
@@ -181,14 +176,14 @@ public class RegistroArticulos extends AppCompatActivity {
         nombreArticulo = editNameArticle.getText().toString();
         Boolean existe = appView.existArticle(nombreArticulo);
         if (existe) {
-            Toast.makeText(getApplicationContext(), "Ya tiene registrado ese artículo", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.articulo_ya_existe), Toast.LENGTH_LONG).show();
             return false;
         } else {
             return true;
         }
     }
 
-    public void startActivity(){
+    public void startActivity() {
         Intent intent = new Intent(this, PrincipalArticulos.class);
         intent.putExtra("ENVIAR ID PET", id);
         startActivity(intent);

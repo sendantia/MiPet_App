@@ -60,10 +60,10 @@ public class RegistroCitas extends AppCompatActivity implements View.OnClickList
         btnClear = findViewById(R.id.btn_clear_cita);
         btnDate.setOnClickListener(this);
         btnTime.setOnClickListener(this);
+
         //recogemos el id
         bundle = getIntent().getExtras();
         id = bundle.getInt("ENVIAR ID PET");
-
 
         appView = new ViewModel(this.getApplication());
 
@@ -73,7 +73,7 @@ public class RegistroCitas extends AppCompatActivity implements View.OnClickList
             public void onClick(View v) {
                 if (validateCita()) {
                     appView.insertCita(cita);
-                    Toast.makeText(getApplicationContext(), " Cita registrada", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.cita_registrada), Toast.LENGTH_LONG).show();
                     starActivity();
 
                 }
@@ -109,6 +109,7 @@ public class RegistroCitas extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
+                            //creamos la fecha con las variables del datePicker (clase util)
                             fecha = new Date((year - 1900), monthOfYear, dayOfMonth);
 
                             fechaString = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
@@ -130,6 +131,7 @@ public class RegistroCitas extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
+                            //creamos la hora con las variables del TimePicker (clase util)
                             hora = new Time(hourOfDay, minute, 00);
                             horaString = hourOfDay + ":" + minute;
                             txtHora.setText(horaString);
@@ -163,7 +165,7 @@ public class RegistroCitas extends AppCompatActivity implements View.OnClickList
         //comprobamos si el usuario introdujo la fecha y hora
         //comprobamos que la fecha y hora no son anteriores al día actual
         try {
-            //recogemos la fecha:
+            //recogemos la fecha p
             utilDate = new java.util.Date(fecha.getTime());
             //le añadimos a la  fecha la hora
             int hourCita = hora.getHours();
@@ -172,15 +174,15 @@ public class RegistroCitas extends AppCompatActivity implements View.OnClickList
             utilDate.setMinutes(minCita);
 
         } catch (NullPointerException e) {
-            Toast.makeText(this.getApplicationContext(), " campos de fecha/ hora sin datos", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getApplicationContext(), getString(R.string.fecha_hora_sin_datos), Toast.LENGTH_LONG).show();
             return false;
         }
         if (c.getTime().after(utilDate)) {
-            Toast.makeText(this.getApplicationContext(), " La fecha seleccionada ya ha pasado", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getApplicationContext(), getString(R.string.fecha_pasada), Toast.LENGTH_LONG).show();
             return false;
         }
 
-        //recogemos la fecha
+        //obtenemos la fecha (sql) haciendo la conversión de la fecha (util del datePicker) en milisegundos
         java.sql.Date fechaSql = new java.sql.Date(fecha.getTime());
         //recogemos la hora:
         java.sql.Time horaSql = new java.sql.Time(hora.getTime());
@@ -194,13 +196,13 @@ public class RegistroCitas extends AppCompatActivity implements View.OnClickList
             cita = new Cita(fechaSql, horaSql, nombreClinica, motivo, id);
             if (nombreClinica.isEmpty() || motivo.isEmpty()) {
 
-                Toast.makeText(getApplicationContext(), " Rellene todos los campos", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.falta_campos), Toast.LENGTH_LONG).show();
                 return false;
             } else {
                 return true;
             }
         } else {
-            Toast.makeText(getApplicationContext(), " La cita ya está registrada", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.cita_existe), Toast.LENGTH_LONG).show();
             return false;
         }
 

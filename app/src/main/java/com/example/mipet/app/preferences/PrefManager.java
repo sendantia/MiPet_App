@@ -12,7 +12,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class PrefManager {
     Context context;
     private static final String AES = "AES";
-    private static final String SHA= "SHA-256";
+    private static final String SHA = "SHA-256";
     private String passEncrypt;
 
     public PrefManager(Context context) {

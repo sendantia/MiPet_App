@@ -39,6 +39,8 @@ public class PrincipalCitas extends AppCompatActivity implements CitaListAdapter
         setContentView(R.layout.activity_principal_citas);
         txtNamePet = findViewById(R.id.txt_name_pet);
         regCita = findViewById(R.id.btn_add_cita);
+
+        //recogemos el id de la mascota
         bundle = getIntent().getExtras();
         idPetPass = bundle.getInt("ENVIAR ID PET");
 
@@ -50,8 +52,11 @@ public class PrincipalCitas extends AppCompatActivity implements CitaListAdapter
         recicler.setLayoutManager(new LinearLayoutManager(this));
 
         appView = new ViewModel(this.getApplication());
-        namePet=appView.getNamePet(idPetPass);
-        txtNamePet.setText("Citas de "  +namePet);
+        //texto inicio de ventana
+        namePet = appView.getNamePet(idPetPass);
+        txtNamePet.setText("Citas de " + namePet);
+
+        //devuelve las citas d ela mascota por su id
         appView.getAllCitaByPet(idPetPass).observe(this, new Observer<List<Cita>>() {
             @Override
             public void onChanged(List<Cita> citas) {
@@ -63,7 +68,7 @@ public class PrincipalCitas extends AppCompatActivity implements CitaListAdapter
         regCita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PrincipalCitas.this,RegistroCitas.class);
+                Intent intent = new Intent(PrincipalCitas.this, RegistroCitas.class);
                 intent.putExtra("ENVIAR ID PET", idPetPass);
                 setResult(Activity.RESULT_OK, intent);
                 startActivityForResult(intent, NEW_ACTIVITY_REQUEST_CODE2);
@@ -96,8 +101,7 @@ public class PrincipalCitas extends AppCompatActivity implements CitaListAdapter
     }
 
     @Override
-    public void OnDeleteClickListener(Cita cita) {
-        // Code for Delete operation
+    public void OnDeleteClickListenerCita(Cita cita) {
         appView.deleteCita(cita);
     }
 }

@@ -44,7 +44,9 @@ public interface NotificacionDao {
     String timeByNoti(String nombre, String fecha);
 
     @Query("SELECT EXISTS(SELECT * FROM Notificacion  inner join Cita " +
-            "on Notificacion.id_cita=Cita.id_cita WHERE Cita.clinica=(:nombre) AND Notificacion.fecha_noti=(:fecha)" +
-            "AND Cita.hora=(:time) AND Cita.motivo=(:motivo) )")
+            "on Notificacion.id_cita=Cita.id_cita WHERE Cita.clinica=(:nombre)" +
+            " AND Notificacion.fecha_noti=(:fecha) AND Cita.hora=(:time) AND Cita.motivo=(:motivo) )")
     Boolean isNotification(String nombre, String fecha, Time time, String motivo);
+
+
 }

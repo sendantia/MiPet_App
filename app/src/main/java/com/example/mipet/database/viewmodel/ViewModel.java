@@ -90,9 +90,6 @@ public class ViewModel extends AndroidViewModel {
     public Boolean login(String email,String pass){
         return mRepository.loginUser(email,pass);
     }
-    public Boolean isNoti(Integer idCita){ return mRepository.isNoti(idCita);}
-    public Boolean isNotiByIdCita(Integer idCita){ return mRepository.isNotiByIdCita(idCita);}
-    public Boolean isNotiCompare(String nombre, String fecha){ return mRepository.isNotiCompare(nombre,fecha);}
     public Boolean existCita(String clinica, Date fecha,Integer idPet){ return mRepository.existCita(clinica,fecha,idPet);}
     public Boolean isNotification(String clinica, String fecha, Time time, String motivo){
         return mRepository.isNotification(clinica,fecha,time,motivo);

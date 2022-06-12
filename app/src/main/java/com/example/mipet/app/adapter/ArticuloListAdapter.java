@@ -16,7 +16,7 @@ import com.example.mipet.database.entities.Articulo;
 
 import java.util.List;
 
-public class ArticuloListAdapter  extends RecyclerView.Adapter<ArticuloListAdapter.ArticuloViewHolder> {
+public class ArticuloListAdapter extends RecyclerView.Adapter<ArticuloListAdapter.ArticuloViewHolder> {
 
     public interface OnDeleteClickListener {
         void OnDeleteClickListener(Articulo mArticulos);
@@ -48,9 +48,6 @@ public class ArticuloListAdapter  extends RecyclerView.Adapter<ArticuloListAdapt
             holder.setData(articulo.getNombreArticulo(), articulo.getPvp(), articulo.getFechaVencimiento(), articulo.getRenovacion(), position);
             holder.setListeners();
 
-        } else {
-            //en caso de que no haya datos.
-            holder.textnombreArt.setText(R.string.no_note);
         }
 
     }
@@ -73,20 +70,20 @@ public class ArticuloListAdapter  extends RecyclerView.Adapter<ArticuloListAdapt
         private int mPosition;
         private ImageView btnEliminar;
 
-        public ArticuloViewHolder(View itemView){
+        public ArticuloViewHolder(View itemView) {
 
             super(itemView);
-            textnombreArt=itemView.findViewById(R.id.nombre_articulo);
-            textPvp=itemView.findViewById(R.id.pvp);
-            textfecha=itemView.findViewById(R.id.fecha_renovacion);
-            textduracion=itemView.findViewById(R.id.duracion);
-            btnEliminar=itemView.findViewById(R.id.eliminar_articulo);
+            textnombreArt = itemView.findViewById(R.id.nombre_articulo);
+            textPvp = itemView.findViewById(R.id.pvp);
+            textfecha = itemView.findViewById(R.id.fecha_renovacion);
+            textduracion = itemView.findViewById(R.id.duracion);
+            btnEliminar = itemView.findViewById(R.id.eliminar_articulo);
         }
 
-        public void setData(String nombre, Float pvp, String fecha, String duracion,int position) {
+        public void setData(String nombre, Float pvp, String fecha, String duracion, int position) {
             textnombreArt.setText(nombre);
-            textPvp.setText(pvp.toString()+"€");
-            textfecha.setText(fecha.toString());
+            textPvp.setText(pvp.toString() + "€");
+            textfecha.setText(fecha);
             textduracion.setText(duracion);
             mPosition = position;
         }

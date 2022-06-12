@@ -45,7 +45,7 @@ public class RegistroPet extends AppCompatActivity {
         setContentView(R.layout.activity_registro_pet);
         registrar = findViewById(R.id.insertPet);
         namePetField = (EditText) findViewById(R.id.petName);
-        btnClear=findViewById(R.id.btn_clear_pet);
+        btnClear = findViewById(R.id.btn_clear_pet);
         spinner = (Spinner) findViewById(R.id.spiner);
         cargarSpinner();
         adapterSp = new AdaptadorSpinner(this, listaTipos);
@@ -58,6 +58,7 @@ public class RegistroPet extends AppCompatActivity {
         passUser = pref.getPass();
         appView = new ViewModel(this.getApplication());
 
+        //para limpiar los campos del formulario
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,11 +73,11 @@ public class RegistroPet extends AppCompatActivity {
             public void onClick(View v) {
                 if (validateInput()) {
                     appView.inserPet(pet);
-                    Toast.makeText(getApplicationContext(), " Mascota registrada", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.mascota_registrada), Toast.LENGTH_LONG).show();
                     starActivity();
 
                 } else {
-                    Toast.makeText(getApplicationContext(), " Rellene todos los campos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.falta_campos), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -112,6 +113,7 @@ public class RegistroPet extends AppCompatActivity {
         listaTipos.add(new TipoPet(R.drawable.hamster, "Otros mamíferos"));
     }
 
+    //metodo para comprobar si los campos estan vacios
     private Boolean validateInput() {
         intent = getIntent();
         emailUser = pref.getEmail();
@@ -125,7 +127,7 @@ public class RegistroPet extends AppCompatActivity {
         return true;
     }
 
-    public void starActivity(){
+    public void starActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

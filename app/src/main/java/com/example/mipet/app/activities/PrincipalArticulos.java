@@ -37,10 +37,14 @@ public class PrincipalArticulos extends AppCompatActivity implements ArticuloLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal_articulos);
+        txtSmsInicial = findViewById(R.id.ventana_pet);
+        imBtnAddArticle = findViewById(R.id.btn_add_article);
+
+        //recogemos el id de la mascota
         bundle = getIntent().getExtras();
         idPetPass = bundle.getInt("ENVIAR ID PET");
-        txtSmsInicial=findViewById(R.id.ventana_pet);
-        imBtnAddArticle=findViewById(R.id.btn_add_article);
+
+
         //reclclerview
         recicler = (RecyclerView) findViewById(R.id.recyclerview2);
         articuloListAdapter = new ArticuloListAdapter(this, this);
@@ -48,9 +52,12 @@ public class PrincipalArticulos extends AppCompatActivity implements ArticuloLis
         recicler.setLayoutManager(new LinearLayoutManager(this));
 
         appView = new ViewModel(this.getApplication());
-        namePet=appView.getNamePet(idPetPass);
-        txtSmsInicial.setText("Artículos de: " +namePet);
 
+        //texto inicio de ventana
+        namePet = appView.getNamePet(idPetPass);
+        txtSmsInicial.setText("Artículos de: " + namePet);
+
+        //devuelve los artículos de la mascota por su id
         appView.getAllArticleByPet(idPetPass).observe(this, new Observer<List<Articulo>>() {
             @Override
             public void onChanged(List<Articulo> articulos) {
@@ -58,10 +65,11 @@ public class PrincipalArticulos extends AppCompatActivity implements ArticuloLis
             }
         });
 
+        //registrar artículo
         imBtnAddArticle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PrincipalArticulos.this,RegistroArticulos.class);
+                Intent intent = new Intent(PrincipalArticulos.this, RegistroArticulos.class);
                 intent.putExtra("ENVIAR ID PET", idPetPass);
                 setResult(Activity.RESULT_OK, intent);
                 startActivityForResult(intent, NEW_ACTIVITY_REQUEST_CODE3);
@@ -95,7 +103,6 @@ public class PrincipalArticulos extends AppCompatActivity implements ArticuloLis
 
     @Override
     public void OnDeleteClickListener(Articulo articulo) {
-        // Code for Delete operation
         appView.deleteArticulo(articulo);
     }
 }

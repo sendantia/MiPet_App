@@ -57,9 +57,6 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             holder.setData(pet.getNombre(), pet.getTipo(), position);
             holder.setListeners();
 
-        } else {
-            //en caso de que no haya datos.
-            holder.nombre.setText(R.string.no_note);
         }
     }
 

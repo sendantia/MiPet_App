@@ -20,6 +20,9 @@ import com.example.mipet.R;
 import com.example.mipet.app.activities.MainActivity;
 
 public class NotificationService extends IntentService {
+    //intenservice para indicar que esta clase es un servicio
+    //esta clase crea la notidficación en la barra de tareas
+    //cuando le llama la clase AlarmReceiver
 
     private NotificationManager notificationManager;
     private PendingIntent pendingIntent;
@@ -45,14 +48,14 @@ public class NotificationService extends IntentService {
         notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent mIntent = new Intent(this, MainActivity.class);
         Resources res = this.getResources();
-        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);//sonido alarma
 
         String message = getString(R.string.new_notification);
 //SI EL SISTEMA ESTA POR ENCIMA DE ANDROID O, asi la notificacion aparecerá en los dos sistemas
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            final int NOTIFY_ID = 0; // ID of notification
-            String id = NOTIFICATION_CHANNEL_ID; // default_channel_id
-            String title = NOTIFICATION_CHANNEL_ID; // Default Channel
+            final int NOTIFY_ID = 0; // id de la notificación
+            String id = NOTIFICATION_CHANNEL_ID;
+            String title = NOTIFICATION_CHANNEL_ID;
             PendingIntent pendingIntent;
             NotificationCompat.Builder builder;
             NotificationManager notifManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -64,7 +67,7 @@ public class NotificationService extends IntentService {
             if (mChannel == null) {
                 mChannel = new NotificationChannel(id, title, importance);
                 mChannel.enableVibration(true);
-                mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+                mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});//vibracion
                 notifManager.createNotificationChannel(mChannel);
             }
             builder = new NotificationCompat.Builder(context, id);

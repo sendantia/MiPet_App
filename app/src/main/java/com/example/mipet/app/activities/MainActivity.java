@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ import com.example.mipet.database.viewmodel.ViewModel;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements PetListAdapter.OnDeleteClickListener{
+public class MainActivity extends AppCompatActivity implements PetListAdapter.OnDeleteClickListener {
 
     public static final int UPDATE_ACTIVITY_REQUEST_CODE = 1;
     private String emailUser, passUser, saludo;
@@ -45,14 +46,13 @@ public class MainActivity extends AppCompatActivity implements PetListAdapter.On
 
 
         //recogemos los datos del usuario
-        //PARA EL USUARIO , PREFERENCIAS
         pref = new PrefManager(this);
         intent = getIntent();
         emailUser = pref.getEmail();
         passUser = pref.getPass();
-        saludo=emailUser.substring(0,emailUser.indexOf("@"));
+        saludo = emailUser.substring(0, emailUser.indexOf("@"));
         txtSaludo.setText(saludo);
-        user=new Usuario(emailUser,passUser);
+        user = new Usuario(emailUser, passUser);
 
         //reclclerview
         reciclerView = (RecyclerView) findViewById(R.id.recyclerview);
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements PetListAdapter.On
         //seleccionamos todas las mascotas de cada usuario por el id
         appView.getAllPetByUser(emailUser).observe(this, new Observer<List<Mascota>>() {
             @Override
-            public void onChanged( List<Mascota> pets) {
+            public void onChanged(List<Mascota> pets) {
                 petListAdapter.setPets(pets);
             }
         });
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements PetListAdapter.On
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.sali_con_login:
-                intent=new Intent(Intent.ACTION_MAIN);
+                intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
@@ -102,26 +102,28 @@ public class MainActivity extends AppCompatActivity implements PetListAdapter.On
                 return true;
 
             case R.id.borrarUser:
-                //iniciamos un dialogo
+                //iniciamos un dialogo para la verificación
                 AlertDialog.Builder myBuild = new AlertDialog.Builder(this);
                 myBuild.setTitle(getString(R.string.delete_user_dialog));
                 myBuild.setMessage(getString(R.string.acept_delete));
                 myBuild.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @SuppressLint("ResourceType")
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
                         appView.deleteUser(user);
                         pref.setLogOut();
-                        Toast.makeText(getApplicationContext(),"El usuario ha sido borrado", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.borrar_usuario), Toast.LENGTH_LONG).show();
                         startActivityUser();
 
                     }
                 });
 
                 myBuild.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @SuppressLint("ResourceType")
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getApplicationContext(), "Borrado cancelado", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.cancelar_borrar), Toast.LENGTH_LONG).show();
                     }
                 });
                 AlertDialog dialog = myBuild.create();
@@ -143,13 +145,11 @@ public class MainActivity extends AppCompatActivity implements PetListAdapter.On
 
     @Override
     public void OnDeleteClickListener(Mascota myPet) {
-        // Code for Delete operation
-        //appView.deletePet(myPet);
         aceptDelete(myPet);
     }
 
     //dialogo para asegurarse antes de borrar la mascota
-    public void aceptDelete(Mascota myPet){
+    public void aceptDelete(Mascota myPet) {
         AlertDialog.Builder myBuild = new AlertDialog.Builder(this);
         myBuild.setTitle(getString(R.string.delete_pet));
         myBuild.setMessage(getString(R.string.acept_delete_pet));
@@ -162,16 +162,18 @@ public class MainActivity extends AppCompatActivity implements PetListAdapter.On
         });
 
         myBuild.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getApplicationContext(), "Borrado cancelado", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.cancelar_borrar), Toast.LENGTH_LONG).show();
             }
         });
         AlertDialog dialog = myBuild.create();
         dialog.show();
 
     }
-    public void startActivityUser(){
+
+    public void startActivityUser() {
         intent = new Intent(this, UserLogin.class);
         startActivity(intent);
         finish();

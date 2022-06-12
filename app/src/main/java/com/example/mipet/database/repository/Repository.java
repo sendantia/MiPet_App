@@ -136,12 +136,6 @@ public class Repository {
 
     public Boolean existArticle(String nameArticle){ return mArticuloDao.existArticle(nameArticle);}
 
-    public Boolean isNoti(Integer idNoti){ return mNotiDao.isNoti(idNoti);}
-
-    public Boolean isNotiByIdCita(Integer idCita){ return mNotiDao.isNotiByIdCita(idCita);}
-
-    public Boolean isNotiCompare(String nombre, String fecha){ return mNotiDao.isNotiCompare(nombre, fecha);}
-
     public Boolean existCita(String clinica, Date fecha, Integer idPet){ return mCitaDao.existCita(clinica,fecha,idPet);}
 
     public Boolean isNotification(String clinica, String fecha, Time time, String motivo){
